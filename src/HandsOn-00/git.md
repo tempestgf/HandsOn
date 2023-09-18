@@ -80,8 +80,14 @@ git config --global --get github.token
 11. Clonarem el repositori plantilla pel desenvolupament del curs:
 
 ```sh
-git clone https://github.com/OS-GEI-IGUALADA-2223/course-X.git
+git clone x
 ```
+
+x és el repositori que us ha generat
+
+i 
+
+el password és el token
 
 Recorda modificar *X* pel teu usuari de GitHub.
 
