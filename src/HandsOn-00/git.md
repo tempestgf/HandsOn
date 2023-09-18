@@ -91,9 +91,16 @@ Un cop cliqueu a acceptar, us apareixerà la següent pantalla:
 13. Clonarem el repositori plantilla pel desenvolupament del curs:
 
 ```sh
-git clone https://github.com/OS-GEI-IGUALADA-2223/handson00-X.git
-# On X ha de ser el vostre usuari de github
+git clone x
 ```
+
+x és el repositori que us ha generat
+
+i 
+
+el password és el token
+
+Recorda modificar *X* pel teu usuari de GitHub.
 
 Git t'hauria de demanar les credencials la primera vegada. Introdueix el teu nom d'usuari de GitHub i, a continuació, el teu token d'accés com a contrasenya. Assegura't de copiar el token complet sense cap modificació. Després de fer-ho, Git clonarà el repositori plantilla al teu sistema Debian i en futures accions no et demanarà les credencials.
 
