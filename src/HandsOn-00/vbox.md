@@ -27,7 +27,7 @@ Ara configurarem la xarxa. Ves a **Red**, selecciona **Adaptador 1**, assegurat 
 
 ![Pas7](../HandsOn-00/figs/vbox/7.PNG)
 
-Ara clicarem *Reenvío de puertos* i afegirem una nova regla. Aquesta configuració permetrà que la màquina virtual sigui accessible des de la màquina host a través de SSH. Aquesta configuració permetrà que la màquina virtual sigui accessible des de la màquina host a través de SSH. Afegiu la regla amb els parametres que es mostren a la imatge i cliqueu **Aceptar**.
+Ara clicarem *Reenvío de puertos* i afegirem una nova regla. Aquesta configuració permetrà que la màquina virtual sigui accessible des de la màquina host a través de SSH. Afegiu la regla amb els parametres que es mostren a la imatge i cliqueu **Aceptar**.
 
 ![Pas8](../HandsOn-00/figs/vbox/8.PNG)
 
