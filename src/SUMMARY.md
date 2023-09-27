@@ -19,4 +19,5 @@
 
 # HandsOn-01: Programació bàsica amb C
 - [Pokemon](./HandsOn-01/pokemon.md)
+- [DebianBin](./HandsOn-01/bin.md)
 - [Reptes](./HandsOn-01/reptes.md)
