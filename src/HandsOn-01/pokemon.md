@@ -55,7 +55,7 @@ int main() {
 Si compilem i executem el programa, funcionarà i obtindrem el resultat esperat:
 
 ```sh
- gcc -o pokemon pokemon.c
+gcc -o main main.c
 ```
 
 ```sh
