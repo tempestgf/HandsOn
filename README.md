@@ -11,3 +11,7 @@ Les pràctiques presentades en aquest llibre aborden:
 * Interbloqueig
 * Scripting
 * Programació amb C
+
+Aquest material és de codi obert i podeu col·laborar-hi, complementar-lo o corregir-lo mitjançant peticions de tirada (pull requests) al repositori. L'objectiu és estendre'n la seva funcionalitat i millorar-ne l'explicació.  
+
+Aquest material s'ha creat utilitzant **mdbook** en la versió 0.4.34. Podeu trobar més informació sobre mdbook a [mdbook Documentation](https://rust-lang.github.io/mdBook/index.html).  La secció de [Contribuïr](./readme/contribute.md) conté informació sobre com instal·lar mdbook i com contribuir al repositori.
