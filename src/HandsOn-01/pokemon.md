@@ -524,22 +524,93 @@ void set_pokemon_id(Pokemon pokemon, int pokemon_id) {
 }
 ```
 
-Ara podem utilitzar la nostra llibreria:
+>  **SOLUCIÓ 1**: El setter no funciona ja que la funció **set_pokemon_id** rep una còpia de la variable **pokemon**. Per tant, quan modifiquem el camp **pokemon_id** de la variable **pokemon** dins de la funció **set_pokemon_id**, en realitat estem modificant una còpia de la variable **pokemon**. Per solucionar aquest problema, necessitem passar un punter a la variable **pokemon**. Per tant, la funció **set_pokemon_id** quedaria de la següent manera:
+
+```c
+void set_pokemon_id(Pokemon *pokemon, int pokemon_id) {
+    pokemon->pokemon_id = pokemon_id;
+}
+```
+
+>  **SOLUCIÓ 2**: No podem declarar la variable ```Pokemon pikachu``` ja que els atributs de la estructura **Pokemon** no són visibles a la funció **main**. Quina memòria ha de reservar si no sap la mida de la estructura **Pokemon**? Per solucionar aquest problema, podem utilitzar un punter a la estructura **Pokemon**. Per tant, la funció **main** quedaria de la següent manera:
 
 ```c
 /*
- * main.c
- */
+* main.c
+*/
 
 #include <stdio.h>
 #include "pokemon.h"
 
 int main() {
-    Pokemon pikachu = create_pokemon(25, "Pikachu", 0.4, 6.0);
+    Pokemon *pikachu;
+    pikachu = create_pokemon(25, "Pikachu", 0.4, 6.0);
     set_pokemon_id(pikachu, 26);
     print_pokemon(pikachu);
     destroy_pokemon(pikachu);
     return 0;
+}
+```
+
+```c
+/*
+* pokemon.h
+*/
+
+#ifndef _POKEMON_H_
+#define _POKEMON_H_
+
+typedef struct pokemon Pokemon;
+
+Pokemon* create_pokemon(int pokemon_id, char *name, double height, double weight);
+void print_pokemon(Pokemon* pokemon);
+void destroy_pokemon(Pokemon* pokemon);
+void set_pokemon_id(Pokemon *pokemon, int pokemon_id);
+
+#endif // _POKEMON_H_
+```
+
+```c
+/*
+* pokemon.c
+*/
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h> //strlen(), strcpy()
+#include "pokemon.h"
+
+struct pokemon {
+    int          pokemon_id;
+    char         *name;
+    double       height;
+    double       weight;
+};
+
+Pokemon* create_pokemon(int pokemon_id, char *name, double height, double weight) {
+    Pokemon* pokemon = malloc(sizeof(Pokemon));
+    pokemon->pokemon_id = pokemon_id;
+    pokemon->name = malloc( (strlen(name) + 1) * sizeof(char) );
+    strcpy(pokemon->name, name);
+    pokemon->height = height;
+    pokemon->weight = weight;
+
+    return pokemon;
+}
+
+void print_pokemon(Pokemon* pokemon) {
+    printf("Pokemon: %s\n", pokemon->name);
+    printf("Pokemon ID: %d\n", pokemon->pokemon_id);
+    printf("Pokemon Height: %f\n", pokemon->height);
+    printf("Pokemon Weight: %f\n", pokemon->weight);
+}
+
+void destroy_pokemon(Pokemon* pokemon) {
+    free(pokemon->name);
+    free(pokemon);
+}
+
+void set_pokemon_id(Pokemon *pokemon, int pokemon_id) {
+    pokemon->pokemon_id = pokemon_id;
 }
 ```
 
@@ -619,7 +690,7 @@ print_pokemon(pikachu, file);
 
 ## Test de la llibreria
 
-Es recomanable sempre que programem llibreries incloure un fitxer de test on puguem provar les funcionalitats de la llibreria. En aquest cas, crearem un fitxer anomenat **test.c** on provarem les funcionalitats. I ens permetrà en un futur fer modificacions a la llibreria sense por de trencar la funcionalitat. 
+Es recomanable sempre que programem llibreries incloure un fitxer de test on puguem provar les funcionalitats de la llibreria. En aquest cas, crearem un fitxer anomenat **test.c** on provarem les funcionalitats. I ens permetrà en un futur fer modificacions a la llibreria sense por de trencar la funcionalitat. En aquest punt (**s'assumeix que tenim la struct i el typedef al punt h i són visibles i no cal treballar amb la modalitat en punters**).
 
 
 ```c
