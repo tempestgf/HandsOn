@@ -66,7 +66,7 @@ $ sh -c "$(
 3. Obre el fitxer **~/.zshrc** amb el teu editor de text preferit.
 
 ```sh
-$ neovim ~/.zshrc
+$ nvim ~/.zshrc
 ```
 
 4. Modifica les opcions segons les teves preferències. Per trobar informació sobre com configuració pots consultar [ohmyzsh](https://github.com/ohmyzsh/ohmyzsh/) .Pots canviar el tema, afegir complements i configurar variables d'entorn, entre altres coses. 
