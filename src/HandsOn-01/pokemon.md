@@ -761,3 +761,22 @@ make execute
 **NOTA**: Si conservem el *main.c* original al mateix directori *make* fallarà ja que tindrà dos entrades **int main()** una al fitxer *main.c* i l'altra al fitxer *test.c*. Com el nostre Makefile intenta enllaçar tots els fitxers per formar un únic executable, fallarà ja que no pot enllaçar dos funcions **int main()**. Per tant, elimineu el fitxer *main.c*.
 
 
+## Solució i Problemes generals
+
+He creat un [repositori](https://github.com/OS-GEI-IGUALADA-2223/HandsOn01-pokemon) amb una solució possible dels exercicis. 
+
+### Problemes generals a tenir en compte
+
+1. **Neteja del projecte**: Assegureu-vos de fer un make clean abans de recompilar i tornar a testejar per garantir que tots els objectes es regenerin i no hi hagi falsos positius.
+
+2. **Compilació i Makefile**: Compileu utilitzant el Makefile i totes les opcions proporcionades. Si apareixen errors o avisos, haureu de solucionar-los.
+
+3. **Gestió de memòria**: No cal alliberar i reallocar memòria cada vegada que es fa el setter per al nom o els tipus. Només cal fer-ho una vegada. Podeu comprovar que el punter no sigui NULL abans de realitzar l'assignació.
+
+4. **Control d'errors d'impressió**: Assegureu-vos que les operacions d'impressió no es realitzin amb punteres NULL per evitar errors.
+
+5. **Alliberament de memòria**: Recorda que tota la memòria reservada amb malloc o calloc s'ha de alliberar utilitzant free.
+
+6. **Optimització de codi**: Eviteu el copiar i enganxar excessiu de codi. Per exemple, en comptes de fer múltiples crides a malloc per type[0] i type[1], seria més eficient fer un bucle i definir el nombre de tipus com a una constant utilitzant #define.
+
+7. **Testeu**: Intenteu executar el vostre codi amb diferents condicions per assegurar que funciona en diferents situacions.
