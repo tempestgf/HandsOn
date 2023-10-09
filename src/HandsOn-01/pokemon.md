@@ -524,7 +524,7 @@ void set_pokemon_id(Pokemon pokemon, int pokemon_id) {
 }
 ```
 
->  **SOLUCIÓ 1**: El setter no funciona ja que la funció **set_pokemon_id** rep una còpia de la variable **pokemon**. Per tant, quan modifiquem el camp **pokemon_id** de la variable **pokemon** dins de la funció **set_pokemon_id**, en realitat estem modificant una còpia de la variable **pokemon**. Per solucionar aquest problema, necessitem passar un punter a la variable **pokemon**. Per tant, la funció **set_pokemon_id** quedaria de la següent manera:
+**SOLUCIÓ 1**: El setter no funciona ja que la funció **set_pokemon_id** rep una còpia de la variable **pokemon**. Per tant, quan modifiquem el camp **pokemon_id** de la variable **pokemon** dins de la funció **set_pokemon_id**, en realitat estem modificant una còpia de la variable **pokemon**. Per solucionar aquest problema, necessitem passar un punter a la variable **pokemon**. Per tant, la funció **set_pokemon_id** quedaria de la següent manera:
 
 ```c
 void set_pokemon_id(Pokemon *pokemon, int pokemon_id) {
@@ -532,7 +532,7 @@ void set_pokemon_id(Pokemon *pokemon, int pokemon_id) {
 }
 ```
 
->  **SOLUCIÓ 2**: No podem declarar la variable ```Pokemon pikachu``` ja que els atributs de la estructura **Pokemon** no són visibles a la funció **main**. Quina memòria ha de reservar si no sap la mida de la estructura **Pokemon**? Per solucionar aquest problema, podem utilitzar un punter a la estructura **Pokemon**. Per tant, la funció **main** quedaria de la següent manera:
+**SOLUCIÓ 2**: No podem declarar la variable ```Pokemon pikachu``` ja que els atributs de la estructura **Pokemon** no són visibles a la funció **main**. Quina memòria ha de reservar si no sap la mida de la estructura **Pokemon**? Per solucionar aquest problema, podem utilitzar un punter a la estructura **Pokemon**. Per tant, la funció **main** quedaria de la següent manera:
 
 ```c
 /*
