@@ -20,3 +20,6 @@
 # HandsOn-01: Programació bàsica amb C
 - [Pokemon](./HandsOn-01/pokemon.md)
 - [DebianBin](./HandsOn-01/bin.md)
+
+# HandsOn-02: Gestió i comunicació de processos
+- [Pokedex](./HandsOn-03/pokedex.md)
