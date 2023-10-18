@@ -93,12 +93,9 @@ Un cop cliqueu a acceptar, us apareixerà la següent pantalla:
 ```sh
 git clone x
 ```
-
-x és el repositori que us ha generat
-
-i 
-
-el password és el token
+> **OBSERVACIÓ**.
+ **x**: és el repositori que us ha generat el professor.
+ **password**: és el token 
 
 Recorda modificar *X* pel teu usuari de GitHub.
 
