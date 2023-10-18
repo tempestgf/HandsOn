@@ -286,7 +286,7 @@ El manual ```man``` ens dona informació sobre la sintaxi de les comandes, el se
 
 - Pots desplaçar-te pel manual utilitzant les fletxes de navegació (amunt i avall) o prement la tecla Enter.
 - Per sortir del manual, pots simplement premer la tecla 'q'.
-- Si vols cercar una paraula clau dins del manual, pots utilitzar la tecla '\\' seguida del text que vols cercar. Pots desplaçar-te pels resultats de cerca prement *Enter*.
+- Si vols cercar una paraula clau dins del manual, pots utilitzar la tecla '\/' seguida del text que vols cercar. Pots desplaçar-te pels resultats de cerca prement *Enter*.
 
 A través de la comanda `man cat`, pots veure com el manual proporciona una explicació detallada de la comanda `cat`, la seva sintaxi, opcions, arguments i exemples d'ús
 
