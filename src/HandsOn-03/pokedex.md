@@ -437,7 +437,7 @@ void run_parent(){
    //char ready_msg[6];
    //read(ash_pipe[0],ready_msg, 6 * sizeof(char));
    //printf("[ASH]: %s\n",ready_msg); fflush(stdout);
-   while(waiting!=0){};
+   while(waiting==0);
    write(pokedex_pipe[1], pokemonid_str, sizeof(pokemonid_str));
    
    char msg_pokedex[1000];
@@ -456,11 +456,73 @@ En el cas del pare **ash** únicament s'ha d'indicar al procés com actuar en ca
 
 > **OBSERVACIÓ 2**. Recordeu d'incloure la llibreria ```#include <signal.h>```.
 
+> **OBSERVACIÓ 3**. Si voleu que funcioni heu d'eliminar les optimitzacions del compilador (```-O3```) definides al Makefile. Si no ho feu, aquestes opcions poden fer que el pare no surti mai del bucle ```while(waiting==0);``` ja que el compilador pot optimitzar el codi i no comprovar mai el valor de la variable *waiting*. Si voleu fer servir les optimitzacions, heu de definir la variable *waiting* com a ```volatile```. D'aquesta manera indiqueu que aquesta variable pot ser modificada fòra del flux normal d'execució del programa (recepció del senyal SIGUSR1).
+
+Aquest comportament el podeu observar amb gdb. En el següent exemple, el pare rep la senyal SIGUSR1 i mostra el missatge READY. Però, el pare no surt del bucle ```while(waiting==0);``` ja que el compilador ha optimitzat el codi i no comprova mai el valor de la variable *waiting*. Per fer-ho heu d'afegir la opció ```-g``` al Makefile. Aquesta opció permet que el compilador inclogui informació de depuració al codi objecte. Aquesta informació permet que el depurador pugui mostrar el codi font i les variables del programa. 
+
+```gdb
+GNU gdb (Debian 13.1-3) 13.1
+Copyright (C) 2023 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+Type "show copying" and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<https://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+    <http://www.gnu.org/software/gdb/documentation/>.
+
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from ./ash_v4...
+(gdb) r
+Starting program: ash_v4
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+Introdueix un pokemonId: 4
+[Detaching after fork from child process 1289]
+
+Program received signal SIGUSR1, User defined signal 1.
+run_parent () at ash_v4.c:91
+91	   while(waiting==0);
+(gdb) print waiting
+$1 = 0
+(gdb) break 91
+Breakpoint 1 at 0x555555555394: file ash_v4.c, line 91.
+(gdb) c
+Continuing.
+[ASH]: READY
+waiting: 1
+
+Breakpoint 1, run_parent () at ash_v4.c:91
+91	   while(waiting==0);
+(gdb) print waiting
+$2 = 1
+(gdb) c
+Continuing.
+
+Breakpoint 1, run_parent () at ash_v4.c:91
+91	   while(waiting==0);
+(gdb) print waiting
+$4 = 1
+```
+
+Tot funciona correctment, però el pare no surt del bucle. Per tant, modifiqueu la variable *waiting* perquè sigui ```volatile```. O bé, desactiveu les optimitzacions del compilador.
+
+```c
+/*
+ * ash.c -> Als sources ash_v4.c
+ */
+int volatile waiting = 0;
+```
+
 ![](../HandsOn-03/figs/pokedex/signals.png)
 
-> **OBSERVACIÓ 3**.  A la nostra implementació el pare defineix el tractament del senyal *SIGUSR1* abans de fer el ```fork()``` per tant pare i fill comparteixen aquest tractament. Ara bé, com que el fill fa un recobriment ```exec()``` aquest tractament **també es perd**.
+> **OBSERVACIÓ 4**.  A la nostra implementació el pare defineix el tractament del senyal *SIGUSR1* abans de fer el ```fork()``` per tant pare i fill comparteixen aquest tractament. Ara bé, com que el fill fa un recobriment ```exec()``` aquest tractament **també es perd**.
 
->  **OBSERVACIÓ 4**. Observeu que fins que el pari no rep la senyal *SIGUSR1* del fill no podrà continuar amb la seva execució. Per tant, si el fill no envia la senyal el pare quedarà bloquejat indefinidament. Per evitar aquesta situació, el pare pot definir un *timeout* per esperar la senyal. Si el pare no rep la senyal en un temps determinat, pot mostrar un missatge d'error i sortir. Per fer-ho, el pare ha de definir un *handler* per la senyal **SIGALRM** i utilitzar la funció ```alarm()``` per definir el temps d'espera.
+>  **OBSERVACIÓ 5**. Observeu que fins que el pari no rep la senyal *SIGUSR1* del fill no podrà continuar amb la seva execució. Per tant, si el fill no envia la senyal el pare quedarà bloquejat indefinidament. Per evitar aquesta situació, el pare pot definir un *timeout* per esperar la senyal. Si el pare no rep la senyal en un temps determinat, pot mostrar un missatge d'error i sortir. Per fer-ho, el pare ha de definir un *handler* per la senyal **SIGALRM** i utilitzar la funció ```alarm()``` per definir el temps d'espera.
 
 
 ## Repte: Pokèdex amb FIFOs
