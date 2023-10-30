@@ -22,4 +22,8 @@
 - [DebianBin](./HandsOn-01/bin.md)
 
 # HandsOn-02: Gestió i comunicació de processos
-- [Pokedex](./HandsOn-03/pokedex.md)
+- [Pokedex](./HandsOn-02/pokedex.md)
+
+# HandsOn-03: Programació Avançada del Kernel de Linux
+- [Kernel](./HandsOn-03/kernel.md)
+
