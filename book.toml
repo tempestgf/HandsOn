@@ -5,9 +5,14 @@ multilingual = false
 src = "src"
 title = "HandsOns en Sistemes Operatius per a estudiants del Grau en Enginyeria Informàtica"
 
+[output.html]
+mathjax-support = true
+
+
 [output.html.playground]
 editable = true
 
 [output.html.code.hidelines]
 sh = "~"
 c = "~"
+plaintext = "~"

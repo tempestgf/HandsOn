@@ -27,3 +27,5 @@
 # HandsOn-03: Programació Avançada del Kernel de Linux
 - [Kernel](./HandsOn-03/kernel.md)
 
+# HandsOn-04: Deadlocks
+- [Deadlocks](./HandsOn-04/deadlocks.md)
