@@ -47,7 +47,7 @@ Es possible un interbloqueig amb processos que no estan involucrats en el cicle 
 Si, es possible. Per exemple, si tenim 3 processos A, B i C i 2 recursos R1 i R2. A espera R1 que el té B, B espera R2 que el té A i C espera per R2 que el té A. En aquest cas, C no està involucrat en el cicle de processos que esperen recursos però hi ha un interbloqueig.
 </details>
 
-### Evitació
+## Evitació
 
 Per evitar interbloquejos, es pot utilitzar un algorisme que asseguri que les condicions necessàries per a que es produeixi un interbloqueig no es compleixin.
 
@@ -73,7 +73,7 @@ Per evitar interbloquejos, es pot utilitzar un algorisme que asseguri que les co
 
 La combinació de l'algorisme del banquer i l'algorisme de seguretat és un algorisme que assegura que no es produeixi un interbloqueig. Aquest algorisme es basa en el fet que si un procés no pot obtenir tots els recursos que necessita, llavors no els obtindrà mai. I si un procés pot obtenir tots els recursos que necessita, llavors el sistema es troba en un estat segur.
 
-#### Problema: Anàlisi d'un sistema
+### Problema 1: Anàlisi d'un sistema
 
 Assumirem un sistema amb 5 processos \\( p_0, p_1, p_2, p_3, p_4\\) i 3 tipus de recursos \\(r_{0},r_{1},r_{2}\\). Donat l'estat inicial del sistema, volem saber si el sistema concediria la següent sol·licitud \\( Sol·licitud_{1}(1,0,2)\\)? Raoneu la resposta assumint que el sistema utilitza l'algorisme del banquer i l'algorisme de seguretat.
 
@@ -532,7 +532,7 @@ Un dels problemes de l'algorisme del banquer és que necessita saber el màxim d
 Sense aquesta informació, no es pot saber si una sol·licitud de recursos pot portar a un estat insegur. Per exemple, si un procés sol·licita un recurs que no necessita, llavors no es pot saber si aquesta sol·licitud pot portar a un estat insegur. Per tant, no es pot saber si una sol·licitud de recursos pot portar a un estat insegur. Es pot plantejar algorismes predictius que intentin predir les necessitats de recursos dels processos. Però aquests algorismes no són infal·libles i poden fallar.
 </details>
 
-### Detecció
+## Detecció
 
 En un sistema format per 4 processos \\(p_1, p_2, p_3, p_4\\) i 1 únic recurs de cada tipus \\(r_0, r_1, r_2, r_3, \ldots\\), Raona si es possible un interbloqueig partint del següent graf d'espera:
 
